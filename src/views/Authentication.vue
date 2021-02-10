@@ -126,7 +126,7 @@ export default {
         }
 
         await auth.signInWithEmailAndPassword(email, password);
-        router.push("/budget");
+        router.push("/home");
       } catch (error) {
         state.errorMsg = error.message;
       }
@@ -155,7 +155,7 @@ export default {
             email,
           });
 
-        router.push("/budget");
+        router.push("/home");
       } catch (error) {
         state.errorMsg = error.message;
       }

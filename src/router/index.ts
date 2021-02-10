@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw, RouteLocationNormalized, NavigationGuardNext, RouteLocationNormalizedLoaded } from 'vue-router';
 import Home from '../views/Home.vue';
 import Authentication from '../views/Authentication.vue';
+import EditSpendings from '../views/EditSpendings.vue'
 import {auth} from '../main';
 
 const guard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
@@ -21,18 +22,25 @@ const guard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next:
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/authentication'
   },
   {
-    path: '/home',
+    path: '/authentication',
     name: 'authentication',
     component: Authentication
   },
 
   {
-    path: '/budget',
-    name: 'budget',
+    path: '/home',
+    name: 'home',
     component: Home,
+    beforeEnter: guard
+  },
+
+  {
+    path: '/spendings',
+    name: 'EditSpendings',
+    component: EditSpendings,
     beforeEnter: guard
   }
 ]
