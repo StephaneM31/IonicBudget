@@ -1,8 +1,9 @@
 <template>
 <Layout>
+  
+        
     <template #content>
   <ion-page>
-  
     <ion-content :fullscreen="true">
       <ion-card>
         <ion-card-header>
@@ -14,6 +15,7 @@
 
         <ion-button @click="openPopover">New</ion-button>
       </ion-card>
+      
     </ion-content>
   </ion-page>
   </template>

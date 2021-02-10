@@ -1,14 +1,17 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Login</ion-title>
+    <ion-header :translucent="true">
+      <ion-toolbar color="primary">
+        <ion-title>Authentification</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="6" offset-md="3">
       <ion-card>
         <ion-card-header>
-          <ion-card-title> Bienvenue dans Ionic Budget ! </ion-card-title>
+          <ion-card-title> Bienvenue dans "My Spendings" ! </ion-card-title>
           <ion-card-subtitle> Se connecter </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
@@ -20,7 +23,7 @@
             "
           >
             <ion-item v-if="mode === AuthMode.SignUp">
-              <ion-label position="floating">Name</ion-label>
+              <ion-label position="floating">Pseudo</ion-label>
               <ion-input v-model="name"></ion-input>
             </ion-item>
             <ion-item>
@@ -28,7 +31,7 @@
               <ion-input v-model="email"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Password</ion-label>
+              <ion-label position="floating">Mot de passe</ion-label>
               <ion-input v-model="password" type="password"></ion-input>
             </ion-item>
             <ion-button
@@ -37,7 +40,7 @@
               class="ion-margin-top"
               type="submit"
             >
-              {{ mode === AuthMode.SignIn ? "Sign In" : "Sign Up" }}
+              {{ mode === AuthMode.SignIn ? "Connexion" : "S'enregistrer" }}
             </ion-button>
             <ion-button
               expand="block"
@@ -48,7 +51,7 @@
                   mode === AuthMode.SignIn ? AuthMode.SignUp : AuthMode.SignIn
               "
             >
-              {{ mode === AuthMode.SignIn ? "Sign Up" : "Cancel" }}
+              {{ mode === AuthMode.SignIn ? "S'enregistrer" : "Annuler" }}
             </ion-button>
           </form>
         </ion-card-content>
@@ -56,6 +59,9 @@
           {{ errorMsg }}
         </ion-card-content>
       </ion-card>
+       </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-content>
   </ion-page>
 </template>
@@ -77,7 +83,6 @@ import {
   IonLabel,
   IonItem,
 } from "@ionic/vue";
-
 import { auth, db } from "../main";
 import { reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";
@@ -105,6 +110,7 @@ export default {
     IonItem,
     IonCardHeader,
   },
+  
   setup() {
     const router = useRouter();
     const state = reactive({
@@ -121,7 +127,7 @@ export default {
     ) => {
       try {
         if (!email || !password) {
-          state.errorMsg = "Email and password required!";
+          state.errorMsg = "Email et mot de passe obligatoires!";
           return;
         }
 
@@ -139,7 +145,7 @@ export default {
     ) => {
       try {
         if (!name || !email || !password) {
-          state.errorMsg = "Name, email, and password required!";
+          state.errorMsg = "Pseudo, email et mot de passe obligatoires!";
           return;
         }
 
@@ -160,6 +166,7 @@ export default {
         state.errorMsg = error.message;
       }
     };
+    
 
     return {
       ...toRefs(state),
