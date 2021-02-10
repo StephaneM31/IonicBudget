@@ -1,22 +1,23 @@
 <template>
-  <ion-toolbar color="primary">
+    <ion-item color="primary">
     <ion-title size="large">Mon budget</ion-title>
-    <button 
+    <ion-button 
+        color="warning"
         type="submit" 
         class="btn btn-dark btn-lg btn-block"
         @click="logOut()">
             Log out
-        </button>
-  </ion-toolbar>
+        </ion-button>
+        </ion-item>
 </template>
 
 <script>
 import { auth } from "../main";
 import router from "../router/index";
-import { IonToolbar, IonTitle } from "@ionic/vue";
+import { IonTitle, IonButton, } from "@ionic/vue";
 export default {
   name: 'Toolbar',
-  components: { IonToolbar, IonTitle },
+  components: { IonTitle, IonButton, },
   
 
 methods: {
